@@ -105,22 +105,22 @@ function calculateDiscount(subtotal, promoData) {
 }
 
 const promoCodes = {
-  SPECIALMANCING: {
+  PROAI: {
     type: "percentage",
-    discount: 40,
-    description: "(Diskon buat sesama pemancing, salam 1 Joran!)",
+    discount: 10,
+    description: "(Diskon dadakan)",
   },
 
   LEBARAN: {
     type: "fixed",
-    discount: 50000,
+    discount: 20000,
     description: "(potongan hari raya 50.000)",
   },
 
-  MANCINGMANIA: {
+  AISTUDENT: {
     type: "percentage",
     discount: 20,
-    description: "(Mancing Mania Mantap!)",
+    description: "(Diskon langganan untuk pelajar)",
   },
 };
 
