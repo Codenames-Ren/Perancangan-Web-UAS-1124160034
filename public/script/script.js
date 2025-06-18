@@ -104,6 +104,7 @@ function calculateDiscount(subtotal, promoData) {
   }
 }
 
+//Bikin kode promo
 const promoCodes = {
   PROAI: {
     type: "percentage",
