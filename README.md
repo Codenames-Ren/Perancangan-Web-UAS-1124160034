@@ -1,337 +1,261 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
-
-<a id="readme-top"></a>
-
-<!-- PROJECT SHIELDS -->
+# Gampang.in - Sistem Pembayaran Langganan AI
 
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/your_username/payment-static-website">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
-  </a>
-
-  <h3 align="center">Payment Static Website</h3>
+  <h3 align="center">Gampang.in - Langganan AI</h3>
 
   <p align="center">
-    A modern payment page template for e-commerce applications!
+    Sistem pembayaran modern untuk langganan layanan AI premium!
     <br />
-    <a href="https://github.com/your_username/payment-static-website"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/Codenames-Ren/gampang-payment-system"><strong>Jelajahi dokumentasi »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/your_username/payment-static-website">View Demo</a>
+    <a href="https://codenames-ren.github.io/gampang-payment-system">Lihat Demo</a>
     ·
-    <a href="https://github.com/your_username/payment-static-website/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/Codenames-Ren/gampang-payment-system/issues/new?labels=bug&template=bug-report---.md">Laporkan Bug</a>
     ·
-    <a href="https://github.com/your_username/payment-static-website/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/Codenames-Ren/gampang-payment-system/issues/new?labels=enhancement&template=feature-request---.md">Request Fitur</a>
   </p>
 </div>
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Daftar Isi</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#tentang-proyek">Tentang Proyek</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#dibangun-dengan">Dibangun Dengan</a></li>
       </ul>
     </li>
     <li>
-      <a href="#getting-started">Getting Started</a>
+      <a href="#memulai">Memulai</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
+        <li><a href="#prasyarat">Prasyarat</a></li>
+        <li><a href="#instalasi">Instalasi</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#features">Features</a></li>
+    <li><a href="#penggunaan">Penggunaan</a></li>
+    <li><a href="#fitur">Fitur</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
+    <li><a href="#kontribusi">Kontribusi</a></li>
+    <li><a href="#lisensi">Lisensi</a></li>
+    <li><a href="#kontak">Kontak</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
 
 <!-- ABOUT THE PROJECT -->
 
-## About The Project
+## Tentang Proyek
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+**Gampang.in** adalah sistem pembayaran modern yang dirancang khusus untuk layanan langganan AI premium. Proyek ini dikembangkan sebagai bagian dari tugas akhir semester (UAS) dengan fokus pada pembuatan interface pembayaran yang intuitif dan responsif.
 
-This repository contains the source code for **Payment Static Website**, a modern web-based payment page template designed for e-commerce applications. The project was developed as part of a university course final project (UAS) focusing on creating an intuitive and responsive payment interface.
+Sistem ini menyediakan solusi pembayaran yang komprehensif untuk berbagai layanan AI populer seperti ChatGPT Pro, Claude Pro, Gemini Pro, dan Grok AI Pro dengan berbagai opsi pembayaran dan sistem promo code yang fleksibel.
 
-The system provides a comprehensive payment solution that allows users to select from various service packages, apply promotional codes, choose their preferred payment methods, and complete transactions with a seamless user experience.
+Mengapa proyek ini istimewa:
 
-Here's why this project stands out:
+- **Interface Modern**: Desain yang bersih dan modern menggunakan Tailwind CSS
+- **Multi-Payment**: Mendukung berbagai metode pembayaran (Transfer Bank, E-Wallet, Kartu Kredit, Tunai)
+- **Sistem Promo**: Fitur kode promo dengan berbagai jenis diskon (persentase dan nominal tetap)
+- **Responsive Design**: Tampilan yang optimal di desktop dan mobile
+- **Real-time Calculation**: Kalkulasi harga otomatis dengan preview total pembayaran
+- **Transaction History**: Riwayat transaksi dengan statistik lengkap
 
-- Clean and modern UI design built with Tailwind CSS for optimal user experience
-- Multiple payment methods support including bank transfers and e-wallet options
-- Responsive design that works perfectly on desktop and mobile devices
-- Easy to customize and integrate into existing e-commerce platforms
+### Dibangun Dengan
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-### Built With
-
-This project is built using modern web technologies to ensure optimal performance and maintainability.
+Proyek ini dibangun menggunakan teknologi web modern untuk memastikan performa optimal dan kemudahan maintenance.
 
 - [![HTML5][HTML5.com]][HTML5-url]
 - [![TailwindCSS][TailwindCSS.com]][TailwindCSS-url]
 - [![JavaScript][JavaScript.com]][JavaScript-url]
 - [![CSS3][CSS3.com]][CSS3-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- GETTING STARTED -->
 
-## Getting Started
+## Memulai
 
-To get a local copy up and running, follow these simple steps.
+Untuk menjalankan proyek ini secara lokal, ikuti langkah-langkah berikut.
 
-### Prerequisites
+### Prasyarat
 
-Before you begin, ensure you have the following installed on your system:
+Pastikan Anda memiliki hal-hal berikut terinstall di sistem Anda:
 
-- Node.js (version 14.0 or higher)
-  ```sh
-  # Check if Node.js is installed
-  node --version
-  ```
-- npm (usually comes with Node.js)
-  ```sh
-  npm install npm@latest -g
-  ```
+- Web browser modern (Chrome, Firefox, Safari, Edge)
+- Text editor atau IDE (VS Code, Sublime Text, dll.)
+- Live Server extension (optional, untuk development)
 
-### Installation
+### Instalasi
 
-Follow these steps to set up the project locally:
-
-1. Clone the repository
+1. Clone repository ini
 
    ```sh
-   git clone https://github.com/your_username/payment-static-website.git
+   git clone https://github.com/Codenames-Ren/gampang-payment-system.git
    ```
 
-2. Navigate to the project directory
+2. Masuk ke direktori proyek
 
    ```sh
-   cd payment-static-website
+   cd gampang-payment-system
    ```
 
-3. Initialize npm (if package.json doesn't exist)
+3. Buka file `index.html` di browser Anda, atau gunakan live server:
 
    ```sh
-   npm init -y
+   # Menggunakan Python (jika terinstall)
+   python -m http.server 8000
+
+   # Menggunakan Node.js http-server
+   npx http-server
    ```
 
-4. Install Tailwind CSS and its dependencies
-
-   ```sh
-   npm install -D tailwindcss
-   ```
-
-5. Initialize Tailwind CSS configuration
-
-   ```sh
-   npx tailwindcss init
-   ```
-
-6. Configure your `tailwind.config.js` file
-
-   ```js
-   /** @type {import('tailwindcss').Config} */
-   module.exports = {
-     content: ["./**/*.{html,js}"],
-     theme: {
-       extend: {},
-     },
-     plugins: [],
-   };
-   ```
-
-7. Create your main CSS file (e.g., `src/input.css`) and add Tailwind directives
-
-   ```css
-   @tailwind base;
-   @tailwind components;
-   @tailwind utilities;
-   ```
-
-8. Build your CSS
-
-   ```sh
-   npx tailwindcss -i ./src/input.css -o ./dist/output.css --watch
-   ```
-
-9. Include the compiled CSS in your HTML
-
-   ```html
-   <link href="./dist/output.css" rel="stylesheet" />
-   ```
-
-10. Open `index.html` in your browser or use a local server
-
-    ```sh
-    # Using Python (if installed)
-    python -m http.server 8000
-
-    # Using Node.js http-server (install globally first)
-    npm install -g http-server
-    http-server
-    ```
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+4. Akses aplikasi di `http://localhost:8000` (atau port yang ditampilkan)
 
 <!-- USAGE EXAMPLES -->
 
-## Usage
+## Penggunaan
 
-This payment template can be used in various scenarios:
+Sistem pembayaran Gampang.in dapat digunakan dalam berbagai skenario:
 
-1. **E-commerce Integration**: Integrate the payment page into your existing e-commerce platform
-2. **SaaS Subscription**: Use it for subscription-based services with different pricing tiers
-3. **Service Booking**: Adapt it for service booking platforms
-4. **Digital Product Sales**: Perfect for selling digital products or courses
+### Fitur Utama
 
-### Basic Implementation
+1. **Pemilihan Produk AI**:
 
-1. Open `index.html` in your browser
-2. Select a package (Basic, Premium, Professional, or Enterprise)
-3. Apply a promo code if available
-4. Choose your preferred payment method
-5. Complete the transaction
+   - ChatGPT Pro AI - Rp 35.000
+   - Claude Pro AI - Rp 45.000
+   - Gemini Pro AI - Rp 25.000
+   - Grok AI Pro - Rp 30.000
 
-_For more examples and detailed implementation guide, please refer to the [Documentation](https://example.com)_
+2. **Durasi Langganan**:
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+   - 1 Bulan
+   - 3 Bulan
+   - 1 Tahun
 
-<!-- FEATURES -->
+3. **Metode Pembayaran**:
 
-## Features
+   - Transfer Bank
+   - E-Wallet (OVO, GoPay, Dana)
+   - Kartu Kredit
+   - Bayar Tunai
 
-- **📱 Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
-- **🎨 Modern UI**: Clean and intuitive interface built with Tailwind CSS
-- **💳 Multiple Payment Methods**: Support for bank transfers and e-wallet payments
-- **🏷️ Promo Code System**: Built-in promotional code functionality
-- **📦 Package Selection**: Four different service packages to choose from:
-  - Basic Package
-  - Premium Package
-  - Professional Package
-  - Enterprise Package
-- **✅ Transaction Confirmation**: Pop-up confirmation for completed transactions
-- **📊 Transaction History**: Keep track of payment history
-- **⚡ Fast Loading**: Optimized performance with minimal dependencies
-- **🔧 Easy Customization**: Simple to modify and adapt to your needs
+4. **Sistem Promo Code**:
+   - `PROAI` - Diskon 10%
+   - `LEBARAN` - Potongan Rp 20.000
+   - `AISTUDENT` - Diskon 20% untuk pelajar
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+### Cara Penggunaan
+
+1. Isi form pemesanan dengan data pelanggan
+2. Pilih produk AI yang diinginkan
+3. Tentukan durasi langganan
+4. Masukkan kode promo (jika ada)
+5. Pilih metode pembayaran
+6. Klik "Proses Pembayaran"
+7. Konfirmasi pembayaran di modal yang muncul
+
+## Fitur
+
+- **📱 Responsive Design**: Tampilan optimal di semua perangkat
+- **🎨 Modern UI/UX**: Interface yang bersih dan intuitif
+- **💳 Multi-Payment**: Mendukung 4 metode pembayaran berbeda
+- **🏷️ Smart Promo System**: Sistem kode promo dengan validasi otomatis
+- **🤖 AI Service Integration**: Integrasi dengan layanan AI populer
+- **📊 Real-time Analytics**: Statistik transaksi real-time
+- **💰 Auto Calculation**: Kalkulasi harga otomatis dengan preview
+- **📋 Transaction History**: Riwayat transaksi dengan detail lengkap
+- **🔔 Payment Confirmation**: Modal konfirmasi pembayaran yang informatif
+- **⚡ Fast Performance**: Performa cepat dengan vanilla JavaScript
 
 <!-- ROADMAP -->
 
 ## Roadmap
 
-- [x] Basic payment page layout
-- [x] Package selection functionality
-- [x] Payment method integration
-- [x] Promo code system
-- [x] Transaction confirmation
-- [x] Responsive design implementation
-- [ ] Payment gateway integration
-- [ ] User authentication system
-- [ ] Advanced transaction history
+- [x] Sistem pembayaran dasar
+- [x] Integrasi multi-produk AI
+- [x] Sistem promo code
+- [x] Riwayat transaksi
+- [x] Responsive design
+- [x] Modal konfirmasi pembayaran
+- [ ] Integrasi payment gateway real
+- [ ] Sistem notifikasi email
+- [ ] Dashboard admin
+- [ ] Export data transaksi
 - [ ] Multi-language support
-  - [ ] Indonesian
+  - [ ] Bahasa Indonesia
   - [ ] English
 - [ ] Dark mode theme
-- [ ] Email confirmation system
-- [ ] Advanced analytics dashboard
+- [ ] API integration
+- [ ] User authentication
 
-See the [open issues](https://github.com/your_username/payment-static-website/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Lihat [open issues](https://github.com/Codenames-Ren/gampang-payment-system/issues) untuk daftar lengkap fitur yang diusulkan dan bug yang diketahui.
 
 <!-- CONTRIBUTING -->
 
-## Contributing
+## Kontribusi
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Kontribusi adalah hal yang membuat komunitas open source menjadi tempat yang luar biasa untuk belajar, menginspirasi, dan berkreasi. Setiap kontribusi yang Anda berikan **sangat dihargai**.
 
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
+Jika Anda memiliki saran untuk membuat proyek ini lebih baik, silakan fork repo ini dan buat pull request. Anda juga bisa membuka issue dengan tag "enhancement".
 
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+1. Fork Project
+2. Buat Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push ke Branch (`git push origin feature/AmazingFeature`)
+5. Buka Pull Request
 
 ### Top contributors:
 
-<a href="https://github.com/your_username/payment-static-website/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=your_username/payment-static-website" alt="contrib.rocks image" />
+<a href="https://github.com/Codenames-Ren/gampang-payment-system/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Codenames-Ren/gampang-payment-system" alt="contrib.rocks image" />
 </a>
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
 
-## License
+## Lisensi
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Didistribusikan di bawah MIT License. Lihat `LICENSE.txt` untuk informasi lebih lanjut.
 
 <!-- CONTACT -->
 
-## Contact
+## Kontak
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
+Codenames-Ren - [@CodeNamesRen](https://github.com/Codenames-Ren)
 
-Project Link: [https://github.com/your_username/payment-static-website](https://github.com/your_username/payment-static-website)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Project Link: [https://github.com/Codenames-Ren/gampang-payment-system](https://github.com/Codenames-Ren/gampang-payment-system)
 
 <!-- ACKNOWLEDGMENTS -->
 
 ## Acknowledgments
 
-Resources and tools that made this project possible:
+Sumber daya dan tools yang membantu proyek ini:
 
 - [Tailwind CSS](https://tailwindcss.com)
-- [Choose an Open Source License](https://choosealicense.com)
-- [Img Shields](https://shields.io)
-- [GitHub Pages](https://pages.github.com)
-- [Font Awesome](https://fontawesome.com)
+- [Heroicons](https://heroicons.com)
 - [Google Fonts](https://fonts.google.com)
-- [Unsplash](https://unsplash.com)
+- [GitHub Pages](https://pages.github.com)
+- [Shields.io](https://shields.io)
 - [Best-README-Template](https://github.com/othneildrew/Best-README-Template)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/your_username/payment-static-website.svg?style=for-the-badge
-[contributors-url]: https://github.com/your_username/payment-static-website/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/your_username/payment-static-website.svg?style=for-the-badge
-[forks-url]: https://github.com/your_username/payment-static-website/network/members
-[stars-shield]: https://img.shields.io/github/stars/your_username/payment-static-website.svg?style=for-the-badge
-[stars-url]: https://github.com/your_username/payment-static-website/stargazers
-[issues-shield]: https://img.shields.io/github/issues/your_username/payment-static-website.svg?style=for-the-badge
-[issues-url]: https://github.com/your_username/payment-static-website/issues
-[license-shield]: https://img.shields.io/github/license/your_username/payment-static-website.svg?style=for-the-badge
-[license-url]: https://github.com/your_username/payment-static-website/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[contributors-shield]: https://img.shields.io/github/contributors/Codenames-Ren/gampang-payment-system.svg?style=for-the-badge
+[contributors-url]: https://github.com/Codenames-Ren/gampang-payment-system/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Codenames-Ren/gampang-payment-system.svg?style=for-the-badge
+[forks-url]: https://github.com/Codenames-Ren/gampang-payment-system/network/members
+[stars-shield]: https://img.shields.io/github/stars/Codenames-Ren/gampang-payment-system.svg?style=for-the-badge
+[stars-url]: https://github.com/Codenames-Ren/gampang-payment-system/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Codenames-Ren/gampang-payment-system.svg?style=for-the-badge
+[issues-url]: https://github.com/Codenames-Ren/gampang-payment-system/issues
+[license-shield]: https://img.shields.io/github/license/Codenames-Ren/gampang-payment-system.svg?style=for-the-badge
+[license-url]: https://github.com/Codenames-Ren/gampang-payment-system/blob/master/LICENSE.txt
 [HTML5.com]: https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white
 [HTML5-url]: https://html.spec.whatwg.org/
 [TailwindCSS.com]: https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white
