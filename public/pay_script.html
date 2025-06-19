@@ -5,23 +5,232 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gampang.in - Langganan AI</title>
     <link rel="stylesheet" href="/public/css/style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+      .swal-popup-fix {
+        z-index: 9999 !important;
+      }
+
+      .swal-confirm-fix {
+        background-color: #3b82f6 !important;
+        border: none !important;
+        border-radius: 0.5rem !important;
+        padding: 0.75rem 1.5rem !important;
+        font-weight: 600 !important;
+        color: white !important;
+        cursor: pointer !important;
+        transition: background-color 0.2s ease !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: inline-block !important;
+      }
+
+      .swal-confirm-fix:hover {
+        background-color: #2563eb !important;
+      }
+
+      .swal-confirm-fix:focus {
+        outline: 2px solid #3b82f6 !important;
+        outline-offset: 2px !important;
+      }
+
+      /* Dark mode untuk SweetAlert */
+      .dark .swal2-popup {
+        background-color: rgb(31, 41, 55) !important;
+        color: rgb(243, 244, 246) !important;
+      }
+
+      .dark .swal2-title {
+        color: rgb(243, 244, 246) !important;
+      }
+
+      .dark .swal2-content {
+        color: rgb(156, 163, 175) !important;
+      }
+
+      /* Button Promo Code Consistency */
+      #applyPromoBtn {
+        background-color: #f97316 !important;
+        color: white !important;
+        border: none !important;
+        padding: 0.5rem 1rem !important;
+        border-radius: 0.5rem !important;
+        font-weight: 500 !important;
+        transition: all 0.2s ease !important;
+        cursor: pointer !important;
+      }
+
+      #applyPromoBtn:hover:not(:disabled) {
+        background-color: #ea580c !important;
+      }
+
+      #applyPromoBtn:disabled {
+        background-color: #9ca3af !important;
+        cursor: not-allowed !important;
+      }
+
+      /* Dark mode untuk button promo */
+      .dark #applyPromoBtn {
+        background-color: darkblue !important;
+      }
+
+      .dark #applyPromoBtn:hover:not(:disabled) {
+        background-color: blue !important;
+      }
+
+      .dark #applyPromoBtn:disabled {
+        background-color: #6b7280 !important;
+      }
+
+      /* Modal improvements */
+      #paymentModal {
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+      }
+
+      #paymentModal .bg-white {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+
+      .dark #paymentModal .bg-white {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Animasi untuk modal */
+      #paymentModal > div {
+        animation: modalSlideIn 0.3s ease-out;
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px) scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+
+      /* Fix untuk radio buttons */
+      input[type="radio"] {
+        accent-color: #3b82f6;
+      }
+
+      .dark input[type="radio"] {
+        accent-color: #60a5fa;
+      }
+
+      /* Improved focus states */
+      input:focus,
+      select:focus,
+      button:focus {
+        outline: 2px solid #3b82f6 !important;
+        outline-offset: 2px !important;
+      }
+
+      .dark input:focus,
+      .dark select:focus,
+      .dark button:focus {
+        outline-color: #60a5fa !important;
+      }
+
+      /* Transaction cards hover effect */
+      .transaction-card {
+        transition: all 0.2s ease;
+      }
+
+      .transaction-card:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      }
+
+      .dark .transaction-card:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Statistics cards */
+      .stat-card {
+        transition: all 0.2s ease;
+      }
+
+      .stat-card:hover {
+        transform: translateY(-1px);
+      }
+
+      /* Scrollbar styling */
+      .max-h-96::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .max-h-96::-webkit-scrollbar-track {
+        background: rgb(243, 244, 246);
+        border-radius: 3px;
+      }
+
+      .dark .max-h-96::-webkit-scrollbar-track {
+        background: rgb(55, 65, 81);
+      }
+
+      .max-h-96::-webkit-scrollbar-thumb {
+        background: rgb(156, 163, 175);
+        border-radius: 3px;
+      }
+
+      .dark .max-h-96::-webkit-scrollbar-thumb {
+        background: rgb(107, 114, 128);
+      }
+
+      .max-h-96::-webkit-scrollbar-thumb:hover {
+        background: rgb(107, 114, 128);
+      }
+
+      .dark .max-h-96::-webkit-scrollbar-thumb:hover {
+        background: rgb(156, 163, 175);
+      }
+    </style>
   </head>
-  <body class="bg-gradient-to-br from-orange-400 to-red-200 min-h-screen py-8">
+  <body
+    class="bg-gradient-to-br from-gray-300 to-slate-500 dark:from-gray-800 dark:to-gray-900 min-h-screen py-8 transition-colors duration-300"
+  >
     <div class="container mx-auto max-w-4xl px-4">
       <!-- Header -->
-      <div class="text-center mb-8">
-        <h1 class="text-3xl font-bold text-black mb-2">
-          Sistem Pembayaran Gampang.in
-        </h1>
-        <p class="text-black">Kelola transaksi dan pembayaran dengan mudah</p>
+      <div class="mb-8 text-center">
+        <div class="flex justify-center items-center gap-4 flex-wrap">
+          <img
+            src="/public/Image/toppng.com-kawaii-kawaiianime-anime-girl-animegirl-animekawaii-menhera-chan-ok-542x477.png"
+            alt="anime"
+            style="max-height: 100px"
+            class="mt-3"
+          />
+          <h1
+            class="text-3xl font-bold text-black dark:text-white transition-colors"
+          >
+            Sistem Pembayaran Gampang.in
+          </h1>
+          <button
+            id="darkModeToggle"
+            class="text-sm sm:text-base px-3 py-1.5 bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white rounded-md flex items-center gap-2 transition-all duration-300 hover:scale-105"
+          >
+            <span class="dark:hidden">🌙</span>
+            <span class="hidden dark:block">☀️</span>
+            <span class="dark:hidden">Dark Mode</span>
+            <span class="hidden dark:block">Light Mode</span>
+          </button>
+        </div>
+        <p class="text-black dark:text-gray-300 -mt-5 transition-colors">
+          Kelola transaksi dan pembayaran dengan mudah
+        </p>
       </div>
 
       <div class="space-y-4">
         <!-- Form Pembayaran -->
-        <div class="bg-orange-50 rounded-xl shadow-lg p-6">
+        <div
+          class="bg-gray-50 dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-colors duration-300"
+        >
           <div class="flex items-center mb-6">
             <svg
-              class="w-6 h-6 text-blue-600 mr-2"
+              class="w-6 h-6 text-blue-600 dark:text-blue-400 mr-2"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -33,7 +242,9 @@
                 d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
               ></path>
             </svg>
-            <h2 class="text-xl font-semibold text-gray-800">Form Pemesanan</h2>
+            <h2 class="text-xl font-semibold text-gray-800 dark:text-white">
+              Form Pemesanan
+            </h2>
           </div>
 
           <form id="paymentForm" class="space-y-4">
@@ -41,7 +252,7 @@
             <div>
               <label
                 for="customerName"
-                class="block text-sm font-medium text-gray-700 mb-2"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Nama Pelanggan
               </label>
@@ -50,7 +261,7 @@
                 id="customerName"
                 name="customerName"
                 placeholder="Masukkan nama pelanggan"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
               />
             </div>
@@ -59,7 +270,7 @@
             <div>
               <label
                 for="customerEmail"
-                class="block text-sm font-medium text-gray-700 mb-2"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Email
               </label>
@@ -68,7 +279,7 @@
                 id="customerEmail"
                 name="customerEmail"
                 placeholder="example@email.com"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
               />
             </div>
@@ -77,14 +288,14 @@
             <div>
               <label
                 for="productSelect"
-                class="block text-sm font-medium text-gray-700 mb-2"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Pilih Produk
               </label>
               <select
                 id="productSelect"
                 name="product"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
               >
                 <option value="">Pilih Produk...</option>
@@ -107,7 +318,7 @@
             <div>
               <label
                 for="quantity"
-                class="block text-sm font-medium text-gray-700 mb-2"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Lama Berlangganan
               </label>
@@ -115,7 +326,7 @@
               <select
                 id="quantity"
                 name="quantity"
-                class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                class="w-full px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 required
               >
                 <option value="">Pilih Opsi Berlangganan</option>
@@ -127,7 +338,9 @@
 
             <!-- Metode Pembayaran -->
             <div>
-              <label class="block text-sm font-medium text-gray-700 mb-2">
+              <label
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
+              >
                 Metode Pembayaran
               </label>
               <div class="space-y-2">
@@ -138,7 +351,9 @@
                     value="transfer"
                     class="text-blue-600 focus:ring-blue-500"
                   />
-                  <span class="ml-2 text-sm text-gray-700">Transfer Bank</span>
+                  <span class="ml-2 text-sm text-gray-700 dark:text-gray-300"
+                    >Transfer Bank</span
+                  >
                 </label>
                 <label class="flex items-center">
                   <input
@@ -147,7 +362,7 @@
                     value="ewallet"
                     class="text-blue-600 focus:ring-blue-500"
                   />
-                  <span class="ml-2 text-sm text-gray-700"
+                  <span class="ml-2 text-sm text-gray-700 dark:text-gray-300"
                     >E-Wallet (OVO, GoPay, Dana)</span
                   >
                 </label>
@@ -158,7 +373,9 @@
                     value="credit"
                     class="text-blue-600 focus:ring-blue-500"
                   />
-                  <span class="ml-2 text-sm text-gray-700">Kartu Kredit</span>
+                  <span class="ml-2 text-sm text-gray-700 dark:text-gray-300"
+                    >Kartu Kredit</span
+                  >
                 </label>
                 <label class="flex items-center">
                   <input
@@ -167,7 +384,9 @@
                     value="cash"
                     class="text-blue-600 focus:ring-blue-500"
                   />
-                  <span class="ml-2 text-sm text-gray-700">Bayar Tunai</span>
+                  <span class="ml-2 text-sm text-gray-700 dark:text-gray-300"
+                    >Bayar Tunai</span
+                  >
                 </label>
               </div>
             </div>
@@ -175,7 +394,7 @@
             <div>
               <label
                 for="promoCode"
-                class="block text-sm font-medium text-gray-700 mb-2"
+                class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"
               >
                 Kode Promo (Opsional)
               </label>
@@ -185,12 +404,12 @@
                   id="promoCode"
                   name="promoCode"
                   placeholder="Masukkan kode promo"
-                  class="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  class="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <button
                   type="button"
                   id="applyPromoBtn"
-                  class="px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors duration-200"
+                  class="px-4 py-2 bg-orange-500 hover:bg-orange-600 dark:bg-blue-700 dark:hover:bg-blue-600 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200"
                 >
                   Terapkan
                 </button>
@@ -199,22 +418,24 @@
             </div>
 
             <!-- Total -->
-            <div class="bg-white rounded-lg p-4">
+            <div
+              class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 transition-colors duration-300"
+            >
               <div
-                class="flex justify-between items-center text-sm text-gray-600 mb-2"
+                class="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400 mb-2"
               >
                 <span>Subtotal:</span>
                 <span id="subtotal">Rp 0</span>
               </div>
               <div
                 id="discountRow"
-                class="flex justify-between items-center text-sm text-green-600 mb-2 hidden"
+                class="flex justify-between items-center text-sm text-green-600 dark:text-green-400 mb-2 hidden"
               >
                 <span>Diskon:</span>
                 <span id="discount">Rp 0</span>
               </div>
               <div
-                class="flex justify-between items-center text-lg font-semibold text-gray-800 border-t pt-2"
+                class="flex justify-between items-center text-lg font-semibold text-gray-800 dark:text-white border-t border-gray-200 dark:border-gray-600 pt-2"
               >
                 <span>Total:</span>
                 <span id="totalAmount">Rp 0</span>
@@ -224,7 +445,7 @@
             <!-- Submit Button -->
             <button
               type="submit"
-              class="w-full py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+              class="w-full py-3 bg-green-600 hover:bg-green-700 dark:bg-green-700 dark:hover:bg-green-800 text-white font-semibold rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors duration-200"
             >
               Proses Pembayaran
             </button>
@@ -232,11 +453,13 @@
         </div>
 
         <!-- Riwayat Transaksi -->
-        <div class="bg-white rounded-xl shadow-lg p-6">
+        <div
+          class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 transition-colors duration-300"
+        >
           <div class="flex items-center justify-between mb-6">
             <div class="flex items-center">
               <svg
-                class="w-6 h-6 text-green-600 mr-2"
+                class="w-6 h-6 text-green-600 dark:text-green-400 mr-2"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -248,13 +471,13 @@
                   d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                 ></path>
               </svg>
-              <h2 class="text-xl font-semibold text-gray-800">
+              <h2 class="text-xl font-semibold text-gray-800 dark:text-white">
                 Riwayat Transaksi
               </h2>
             </div>
             <button
               id="clearHistoryBtn"
-              class="px-4 py-2 text-sm bg-red-500 text-white rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200 hidden"
+              class="px-4 py-2 text-sm bg-red-500 hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 transition-colors duration-200 hidden"
             >
               Hapus Semua
             </button>
@@ -262,38 +485,56 @@
 
           <!-- Statistics -->
           <div class="grid grid-cols-3 gap-4 mb-6">
-            <div class="text-center p-3 bg-blue-50 rounded-lg">
+            <div
+              class="text-center p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg transition-colors"
+            >
               <div
-                class="text-2xl font-bold text-blue-600"
+                class="text-2xl font-bold text-blue-600 dark:text-blue-400"
                 id="totalTransactions"
               >
                 0
               </div>
-              <div class="text-sm text-gray-600">Transaksi</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">
+                Transaksi
+              </div>
             </div>
-            <div class="text-center p-3 bg-green-50 rounded-lg">
-              <div class="text-2xl font-bold text-green-600" id="totalRevenue">
+            <div
+              class="text-center p-3 bg-green-50 dark:bg-green-900/30 rounded-lg transition-colors"
+            >
+              <div
+                class="text-2xl font-bold text-green-600 dark:text-green-400"
+                id="totalRevenue"
+              >
                 Rp 0
               </div>
-              <div class="text-sm text-gray-600">Pendapatan</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">
+                Pendapatan
+              </div>
             </div>
-            <div class="text-center p-3 bg-purple-50 rounded-lg">
+            <div
+              class="text-center p-3 bg-purple-50 dark:bg-purple-900/30 rounded-lg transition-colors"
+            >
               <div
-                class="text-2xl font-bold text-purple-600"
+                class="text-2xl font-bold text-purple-600 dark:text-purple-400"
                 id="avgTransaction"
               >
                 Rp 0
               </div>
-              <div class="text-sm text-gray-600">Rata-rata</div>
+              <div class="text-sm text-gray-600 dark:text-gray-400">
+                Rata-rata
+              </div>
             </div>
           </div>
 
           <!-- Transaction List -->
           <div id="transactionList" class="space-y-3 max-h-96 overflow-y-auto">
             <!-- Empty State -->
-            <div id="emptyState" class="text-center py-8 text-gray-500">
+            <div
+              id="emptyState"
+              class="text-center py-8 text-gray-500 dark:text-gray-400"
+            >
               <svg
-                class="w-16 h-16 mx-auto mb-4 text-gray-300"
+                class="w-16 h-16 mx-auto mb-4 text-gray-300 dark:text-gray-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -316,15 +557,17 @@
     <!-- Modal Konfirmasi Pembayaran -->
     <div
       id="paymentModal"
-      class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50"
+      class="fixed inset-0 bg-black bg-opacity-50 dark:bg-black dark:bg-opacity-70 hidden items-center justify-center z-50"
     >
-      <div class="bg-white rounded-xl p-6 max-w-md w-full mx-4">
+      <div
+        class="bg-white dark:bg-gray-800 rounded-xl p-6 max-w-md w-full mx-4 transition-colors duration-300"
+      >
         <div class="text-center mb-4">
           <div
-            class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4"
+            class="w-16 h-16 bg-green-100 dark:bg-green-900/30 rounded-full flex items-center justify-center mx-auto mb-4"
           >
             <svg
-              class="w-8 h-8 text-green-600"
+              class="w-8 h-8 text-green-600 dark:text-green-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -337,19 +580,24 @@
               ></path>
             </svg>
           </div>
-          <h3 class="text-xl font-semibold text-gray-800 mb-2">
+          <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">
             Pembayaran Berhasil!
           </h3>
-          <p class="text-gray-600">Transaksi Anda telah diproses</p>
+          <p class="text-gray-600 dark:text-gray-400">
+            Transaksi Anda telah diproses
+          </p>
         </div>
 
-        <div id="paymentDetails" class="bg-gray-50 rounded-lg p-4 mb-4 text-sm">
+        <div
+          id="paymentDetails"
+          class="bg-gray-50 dark:bg-gray-700 rounded-lg p-4 mb-4 text-sm transition-colors duration-300"
+        >
           <!-- Detail pembayaran akan ditampilkan di sini -->
         </div>
 
         <button
           id="closeModalBtn"
-          class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+          class="w-full py-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
         >
           Tutup
         </button>
@@ -359,16 +607,24 @@
     <!-- Template untuk Transaction Item -->
     <template id="transactionTemplate">
       <div
-        class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow duration-200"
+        class="border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 rounded-lg p-4 hover:shadow-md transition-all duration-200"
       >
         <div class="flex justify-between items-start mb-2">
           <div>
-            <h4 class="font-medium text-gray-800 transaction-customer"></h4>
-            <p class="text-sm text-gray-600 transaction-product"></p>
+            <h4
+              class="font-medium text-gray-800 dark:text-white transaction-customer"
+            ></h4>
+            <p
+              class="text-sm text-gray-600 dark:text-gray-400 transaction-product"
+            ></p>
           </div>
           <div class="text-right">
-            <div class="font-semibold text-green-600 transaction-amount"></div>
-            <div class="text-xs text-gray-500 transaction-time"></div>
+            <div
+              class="font-semibold text-green-600 dark:text-green-400 transaction-amount"
+            ></div>
+            <div
+              class="text-xs text-gray-500 dark:text-gray-500 transaction-time"
+            ></div>
           </div>
         </div>
         <div class="flex justify-between items-center text-sm">
@@ -376,7 +632,7 @@
             class="transaction-method px-2 py-1 rounded-full text-xs"
           ></span>
           <span
-            class="transaction-status px-2 py-1 rounded-full text-xs bg-green-100 text-green-800"
+            class="transaction-status px-2 py-1 rounded-full text-xs bg-green-100 dark:bg-green-900/50 text-green-800 dark:text-green-300"
             >Berhasil</span
           >
         </div>

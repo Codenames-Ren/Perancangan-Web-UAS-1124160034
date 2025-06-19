@@ -3,13 +3,89 @@ let transactions = [];
 let transactionIdCounter = 1;
 let currentDiscount = 0;
 let appliedPromoCode = "";
+let isDarkMode = false;
+
+class DarkModeManager {
+  constructor() {
+    this.darkModeToggle = document.getElementById("darkModeToggle");
+    this.htmlElement = document.documentElement;
+    this.userPreference = null; // Track user's manual preference
+    this.init();
+  }
+
+  init() {
+    // Check if user has a saved preference
+    const savedPreference = localStorage.getItem("darkMode");
+
+    if (savedPreference !== null) {
+      // User has a saved preference
+      this.userPreference = savedPreference === "true";
+    } else {
+      // No saved preference, use system preference
+      this.userPreference = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+    }
+
+    // Apply the preference
+    if (this.userPreference) {
+      this.enableDarkMode();
+    } else {
+      this.disableDarkMode();
+    }
+
+    // Event listener untuk toggle button
+    this.darkModeToggle.addEventListener("click", () => {
+      this.toggleDarkMode();
+    });
+
+    // Listen for system theme changes only if user hasn't set a preference
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        // Only follow system preference if user hasn't manually set a preference
+        if (this.userPreference === null) {
+          if (e.matches) {
+            this.enableDarkMode();
+          } else {
+            this.disableDarkMode();
+          }
+        }
+      });
+  }
+
+  enableDarkMode() {
+    this.htmlElement.classList.add("dark");
+    isDarkMode = true;
+  }
+
+  disableDarkMode() {
+    this.htmlElement.classList.remove("dark");
+    isDarkMode = false;
+  }
+
+  toggleDarkMode() {
+    if (this.htmlElement.classList.contains("dark")) {
+      this.disableDarkMode();
+      this.userPreference = false;
+    } else {
+      this.enableDarkMode();
+      this.userPreference = true;
+    }
+
+    // Save user preference
+    localStorage.setItem("darkMode", this.userPreference.toString());
+  }
+}
 
 // Mapping metode pembayaran dengan warna
 const paymentMethodColors = {
-  transfer: "bg-blue-100 text-blue-800",
-  ewallet: "bg-purple-100 text-purple-800",
-  credit: "bg-orange-100 text-orange-800",
-  cash: "bg-green-100 text-green-800",
+  transfer: "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300",
+  ewallet:
+    "bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300",
+  credit:
+    "bg-orange-100 text-orange-800 dark:bg-orange-900/50 dark:text-orange-300",
+  cash: "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
 };
 
 // Mapping nama metode pembayaran
@@ -115,7 +191,7 @@ const promoCodes = {
   LEBARAN: {
     type: "fixed",
     discount: 20000,
-    description: "(potongan hari raya 50.000)",
+    description: "(potongan hari raya 20.000)",
   },
 
   AISTUDENT: {
@@ -170,8 +246,13 @@ function applyPromoCode() {
   promoCode.disabled = true;
   applyPromoBtn.textContent = "Diterapkan";
   applyPromoBtn.disabled = true;
-  applyPromoBtn.classList.remove("bg-green-500", "hover:bg-green-600");
-  applyPromoBtn.classList.add("bg-gray-400");
+  applyPromoBtn.classList.remove(
+    "bg-orange-500",
+    "hover:bg-orange-600",
+    "dark:bg-orange-600",
+    "dark:hover:bg-orange-700"
+  );
+  applyPromoBtn.classList.add("bg-gray-400", "dark:bg-gray-600");
 }
 
 // Tampilkan pesan promo
@@ -191,15 +272,87 @@ function resetPromoCode() {
   promoCode.disabled = false;
   applyPromoBtn.textContent = "Terapkan";
   applyPromoBtn.disabled = false;
-  applyPromoBtn.classList.remove("bg-gray-400");
-  applyPromoBtn.classList.add("bg-green-500", "hover:bg-green-600");
+  applyPromoBtn.classList.remove("bg-gray-400", "dark:bg-gray-600");
+  applyPromoBtn.classList.add(
+    "bg-orange-500",
+    "hover:bg-orange-600",
+    "dark:bg-orange-600",
+    "dark:hover:bg-orange-700"
+  );
   promoMessage.classList.add("hidden");
   updateTotal();
 }
 
+// ===== FUNGSI MODAL =====
+
+// Tampilkan modal konfirmasi
+function showPaymentModal(transaction) {
+  paymentDetails.innerHTML = `
+                <div class="space-y-2">
+                    <div class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">ID Transaksi:</span>
+                        <span class="font-medium text-gray-800 dark:text-white">${
+                          transaction.id
+                        }</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Nama:</span>
+                        <span class="font-medium text-gray-800 dark:text-white">${
+                          transaction.customerName
+                        }</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Produk:</span>
+                        <span class="font-medium text-gray-800 dark:text-white">${
+                          transaction.product
+                        }</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Lama Berlangganan:</span>
+                        <span class="font-medium text-gray-800 dark:text-white">${
+                          transaction.quantity
+                        } Bulan</span>
+                    </div>
+                    <div class="flex justify-between">
+                        <span class="text-gray-600 dark:text-gray-400">Metode:</span>
+                        <span class="font-medium text-gray-800 dark:text-white">${
+                          paymentMethodNames[transaction.paymentMethod]
+                        }</span>
+                    </div>
+                    ${
+                      transaction.discount > 0
+                        ? `
+                    <div class="flex justify-between text-green-600 dark:text-green-400">
+                        <span>Diskon:</span>
+                        <span class="font-medium">-${formatCurrency(
+                          transaction.discount
+                        )}</span>
+                    </div>
+                    `
+                        : ""
+                    }
+                    <hr class="my-2 border-gray-300 dark:border-gray-600">
+                    <div class="flex justify-between text-lg font-semibold">
+                        <span class="text-gray-800 dark:text-white">Total:</span>
+                        <span class="text-green-600 dark:text-green-400">${formatCurrency(
+                          transaction.total
+                        )}</span>
+                    </div>
+                </div>
+            `;
+
+  paymentModal.classList.remove("hidden");
+  paymentModal.classList.add("flex");
+}
+
+// Tutup modal
+function closeModal() {
+  paymentModal.classList.add("hidden");
+  paymentModal.classList.remove("flex");
+}
+
 // ===== FUNGSI TRANSAKSI =====
 
-// Proses pembayaran
 function processPayment(formData) {
   const selectedOption = productSelect.options[productSelect.selectedIndex];
   const subtotal = calculateSubtotal();
@@ -222,70 +375,34 @@ function processPayment(formData) {
     status: "success",
   };
 
+  // Simpan transaksi terlebih dahulu
   transactions.push(transaction);
+
+  // Tampilkan SweetAlert TANPA callback untuk modal
+  Swal.fire({
+    title: "Pesanan Berhasil!",
+    text: `Transaksi ${
+      transaction.id
+    } telah diproses dengan total ${formatCurrency(transaction.total)}`,
+    icon: "success",
+    confirmButtonText: "OK",
+    allowOutsideClick: false,
+    allowEscapeKey: false,
+    customClass: {
+      popup: "swal-popup-fix",
+      confirmButton: "swal-confirm-fix",
+    },
+  }).then((result) => {
+    // Modal akan muncul SETELAH SweetAlert ditutup
+    if (result.isConfirmed) {
+      // Delay kecil untuk memastikan SweetAlert tertutup sempurna
+      setTimeout(() => {
+        showPaymentModal(transaction);
+      }, 100);
+    }
+  });
+
   return transaction;
-}
-
-// Tampilkan modal konfirmasi
-function showPaymentModal(transaction) {
-  paymentDetails.innerHTML = `
-                <div class="space-y-2">
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">ID Transaksi:</span>
-                        <span class="font-medium">${transaction.id}</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Nama:</span>
-                        <span class="font-medium">${
-                          transaction.customerName
-                        }</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Produk:</span>
-                        <span class="font-medium">${transaction.product}</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Lama Berlangganan:</span>
-                        <span class="font-medium">${
-                          transaction.quantity
-                        } Bulan</span>
-                    </div>
-                    <div class="flex justify-between">
-                        <span class="text-gray-600">Metode:</span>
-                        <span class="font-medium">${
-                          paymentMethodNames[transaction.paymentMethod]
-                        }</span>
-                    </div>
-                    ${
-                      transaction.discount > 0
-                        ? `
-                    <div class="flex justify-between text-green-600">
-                        <span>Diskon:</span>
-                        <span class="font-medium">-${formatCurrency(
-                          transaction.discount
-                        )}</span>
-                    </div>
-                    `
-                        : ""
-                    }
-                    <hr class="my-2">
-                    <div class="flex justify-between text-lg font-semibold">
-                        <span>Total:</span>
-                        <span class="text-green-600">${formatCurrency(
-                          transaction.total
-                        )}</span>
-                    </div>
-                </div>
-            `;
-
-  paymentModal.classList.remove("hidden");
-  paymentModal.classList.add("flex");
-}
-
-// Tutup modal
-function closeModal() {
-  paymentModal.classList.add("hidden");
-  paymentModal.classList.remove("flex");
 }
 
 // ===== FUNGSI RIWAYAT TRANSAKSI =====
@@ -356,10 +473,32 @@ function updateStatistics() {
 function clearAllHistory() {
   if (transactions.length === 0) return;
 
-  if (confirm("Apakah Anda yakin ingin menghapus semua riwayat transaksi?")) {
-    transactions = [];
-    renderTransactions();
-  }
+  Swal.fire({
+    title: "Hapus Riwayat Transaksi",
+    text: "Apakah Anda yakin ingin menghapus semua riwayat transaksi?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Ya, Hapus!",
+    cancelButtonText: "Batal",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // Hapus data
+      transactions = [];
+      renderTransactions();
+      updateStatistics(); // Jangan lupa update statistik
+
+      // Tampilkan notifikasi sukses
+      Swal.fire({
+        title: "Terhapus!",
+        text: "Semua riwayat transaksi berhasil dihapus.",
+        icon: "success",
+        timer: 2000,
+        showConfirmButton: false,
+      });
+    }
+  });
 }
 
 // Reset form
@@ -379,24 +518,35 @@ paymentForm.addEventListener("submit", function (e) {
 
   // Validasi metode pembayaran
   if (!formData.get("paymentMethod")) {
-    alert("Silakan pilih metode pembayaran");
+    Swal.fire({
+      title: "Warning",
+      text: "Silakan pilih metode pembayaran terlebih dahulu.",
+      icon: "warning",
+    });
     return;
   }
 
   // Validasi total > 0
   const total = calculateSubtotal() - currentDiscount;
   if (total <= 0) {
-    alert("Total pembayaran harus lebih dari 0");
+    Swal.fire({
+      title: "Warning",
+      text: "Total pembayaran harus lebih dari 0!",
+      icon: "warning",
+    });
     return;
   }
 
   try {
     const transaction = processPayment(formData);
-    showPaymentModal(transaction);
     renderTransactions();
     resetForm();
   } catch (error) {
-    alert("Terjadi kesalahan saat memproses pembayaran");
+    Swal.fire({
+      title: "Error",
+      text: "Terjadi kesalahan saat memproses pembayaran",
+      icon: "error",
+    });
     console.error("Payment error:", error);
   }
 });
@@ -436,6 +586,9 @@ document.addEventListener("keydown", function (e) {
 
 // Initialize app
 function initApp() {
+  // Initialize dark mode manager
+  const darkModeManager = new DarkModeManager();
+
   updateTotal();
   renderTransactions();
 
